@@ -1,6 +1,6 @@
-import pyscreenshot as ImageGrab
 import win32api
 from keyboard import VK_CODE, press
+from vision import *
 #Assuming shorcuts: tactical mode = m, creature mode = m, 
 # pass turn = f1
 
@@ -8,6 +8,9 @@ TACTICAL_MODE = 't'
 CREATURE_MODE ='m'
 PASS_TURN = 'F1'
 SPELLS = {'longRangeAttack': '1', 'buff': '2'}
+
+# TODO consider how to determine when it's ur turn
+# TODO move mouse out to avoid noise when taking screenshots (eg pm green trail)
 
 def fight():
 	'''Assumes the fight has just been entered'''
@@ -34,16 +37,6 @@ def toggleCreatureMode():
 	
 def ready():
 	press('f1')
-	
-def getScreenShot(box = (0,0, 1279, 1023)):
-	return ImageGrab.grab(box)
-	
-def getPrePostImages(toggleAction):
-	preScreenShot = getScreenShot()
-	toggleAction()
-	postScreenShot = getScreenShot()
-	toggleAction()
-	return (preScreenShot, postScreenShot)
 	
 def ensureTacticalMode():
 	'''compute # of colors in a pre/post screenshot.
