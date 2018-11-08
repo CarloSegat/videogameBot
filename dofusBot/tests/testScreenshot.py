@@ -1,6 +1,6 @@
 if __name__ ==  '__main__':
 	import cv2
-	from vision import getScreenShot, pilToCv2
+	from src.vision import getScreenShot, pilToCv2
 	
 	def test_screenshot_and_pilToCv2():
 		a = getScreenShot()

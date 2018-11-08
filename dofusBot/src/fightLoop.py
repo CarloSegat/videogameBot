@@ -1,6 +1,7 @@
 import win32api
 from keyboard import VK_CODE, press
 from vision import *
+from src.vision import getScreenShot
 #Assuming shorcuts: tactical mode = m, creature mode = m, 
 # pass turn = f1
 
@@ -17,12 +18,13 @@ def fight():
 	ensureTacticalMode()
 	ensureCreatureMode()
 	ready()
-	while ! isFightFinished():
+	while not isFightFinished():
 		startOfTurnAP = getAP()
 		x, y = getScreenCoordsOfNearestEnemy()
 		selectSpell(SPELLS['longRangeAttack'])
 		clickScreenCoord((x, y))
 		if getAP() == startOfTurnAP:
+			pass
 			# click w/out spells selected halfway between pg and nearest enemy
 			# select an attack spell
 			# click on nearest enemy
@@ -56,12 +58,12 @@ def isFightFinished():
 	if the images are almost identical then the fight has finished.
 	Note that pressing creature mode shortcut outside a fight doesn't do anything'''
 	pre, post = getPrePostImages(toggleCreatureMode)
-	return areImagesSimilar(pre, post):
+	return areImagesSimilar(pre, post)
 	
 def getScreenCoordsOfNearestEnemy():
 	'''Uses fact that enemies have a blue circle underneath in creature mode'''
-	pre, post = getPrePostImages(toggleCreatureMode)
-	difference = post - pre
+	screen = getScreenShot()
+	blueMasked = applyBlueMask(screen)
 	# blue mask the picture to find enemies
 	# get coordinates of blue edges
 	# ???
@@ -72,9 +74,10 @@ def selectSpell(correspondingNumber):
 	
 def clickScreenCoord(coord):
 	win32api.SetCursorPos(coord)
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0,0,0)
-    time.sleep(random.uniform(.30, .19))
-    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0,0,0)
+	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0,0,0)
+	time.sleep(random.uniform(.30, .19))
+	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0,0,0)
 
 def getAP():
+	pass
 	
