@@ -3,6 +3,7 @@ import cv2
 import PIL
 import numpy as np
 from imageop import scale
+from Point import Point
 
 def getScreenShot(box = (0,0, 1279, 1023)):
 	return ImageGrab.grab(box)
@@ -35,7 +36,7 @@ def areImagesSimilar(imgLHS, imgRHS):
 	'''Simple pixel checking. If images are identical te subtraction will give a completly 
 	black image.'''
 	subtraction = imgLHS - imgRHS
-	return isPercentageBlack(subraction, 50)
+	return isPercentageBlack(subtraction, 50)
 	
 def isPercentageBlack(img, percentage):
 	# check if it's PIL or opencv img
@@ -51,7 +52,7 @@ def applyBlueMask(img):
 def getCoordsWhereWhite(img):
 	if(len(img.shape)> 2):
 		raise Exception("method takes a 1 channel img")
-	return np.where(img > 200)
+	return Point.convertToPoints(np.where(img > 200))
 
 def getGroupsOfCoordinates(arrayOf2DCoords, threshold):
 	'''Input: 2d points
@@ -64,7 +65,7 @@ def getGroupsOfCoordinates(arrayOf2DCoords, threshold):
 		while i < len(arrayOf2DCoords):
 			try:
 				for point in cluster:
-					if(touch(point, arrayOf2DCoords[i])):
+					if(isAdjacent(point, arrayOf2DCoords[i])):
 						cluster.append(arrayOf2DCoords[i])	
 						arrayOf2DCoords = arrayOf2DCoords[np.arange(len(arrayOf2DCoords))!=i]
 						i = 0
@@ -73,11 +74,8 @@ def getGroupsOfCoordinates(arrayOf2DCoords, threshold):
 			except IndexError:
 				break
 		if len(cluster) > threshold:
-			clusters.append(cluster)		
+			clusters.append(Point.convertToPoints(cluster))	
 	return clusters
-
-def touch(point1, point2):
-	return abs(point1[0] - point2[0]) + abs(point1[1] - point2[1]) <= 2
 
 def getCenterOfCrescent(points):
 	'''Given 2d points that roughly represent a crescent return the rough center'''
