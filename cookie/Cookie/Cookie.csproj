@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C10BA920-E521-4D99-9913-2885152A96DA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Cookie</RootNamespace>
+    <AssemblyName>Cookie</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cookie-icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MoonSharp.Interpreter, Version=2.0.0.0, Culture=neutral, PublicKeyToken=921e73ce94aa17f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\MoonSharp.2.0.0.0\lib\net40-client\MoonSharp.Interpreter.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Commands\BidHouseCommand.cs" />
+    <Compile Include="Commands\Commands\ChangeMapCommand.cs" />
+    <Compile Include="Commands\Commands\DuelCommand.cs" />
+    <Compile Include="Commands\Commands\FightCommand.cs" />
+    <Compile Include="Commands\Commands\GatherCommand.cs" />
+    <Compile Include="Commands\Commands\GoCellCommand.cs" />
+    <Compile Include="Commands\Commands\HelpCommand.cs" />
+    <Compile Include="Commands\Commands\JobsCommand.cs" />
+    <Compile Include="Commands\Commands\KamasCommand.cs" />
+    <Compile Include="Commands\Commands\LevelCommand.cs" />
+    <Compile Include="Commands\Commands\LoadIACommand.cs" />
+    <Compile Include="Commands\Commands\MapCommand.cs" />
+    <Compile Include="Commands\Commands\PathCommand.cs" />
+    <Compile Include="Commands\Exceptions\CommandNotFoundException.cs" />
+    <Compile Include="Commands\Exceptions\NoCommandException.cs" />
+    <Compile Include="Commands\Managers\CommandManager.cs" />
+    <Compile Include="Core\Account.cs" />
+    <Compile Include="Core\Frames\BasicFrame.cs" />
+    <Compile Include="Core\Frames\LatencyFrame.cs" />
+    <Compile Include="Core\Network\Network.cs" />
+    <Compile Include="Core\Scripts\IASpell.cs" />
+    <Compile Include="Core\Scripts\ScriptsData.cs" />
+    <Compile Include="Core\Scripts\ScriptsManager.cs" />
+    <Compile Include="FullSocket\ConnectionFullSocket.cs" />
+    <Compile Include="FullSocket\FullSocket.cs" />
+    <Compile Include="FullSocket\FullSocketConfiguration.cs" />
+    <Compile Include="FullSocket\NetworkMessageDispatcher.cs" />
+    <Compile Include="Game\Achievement\Achievement.cs" />
+    <Compile Include="Game\Alliance\Alliance.cs" />
+    <Compile Include="Game\BidHouse\BidHouse.cs" />
+    <Compile Include="Game\Chat\Chat.cs" />
+    <Compile Include="Game\Chat\History.cs" />
+    <Compile Include="Game\Entity\Entity.cs" />
+    <Compile Include="Game\Entity\Merchant.cs" />
+    <Compile Include="Game\Fight\ArtificialIntelligence.cs" />
+    <Compile Include="Game\Fight\Fight.cs" />
+    <Compile Include="Game\Fight\FightData.cs" />
+    <Compile Include="Game\Fight\Fighters\Companion.cs" />
+    <Compile Include="Game\Fight\Fighters\Fighter.cs" />
+    <Compile Include="Game\Fight\Fighters\Monster.cs" />
+    <Compile Include="Game\Entity\MonsterGroup.cs" />
+    <Compile Include="Game\Entity\Npc.cs" />
+    <Compile Include="Game\Entity\Player.cs" />
+    <Compile Include="Game\Fight\Spell\SpellCast.cs" />
+    <Compile Include="Game\Friend\Friend.cs" />
+    <Compile Include="Game\Guild\Guild.cs" />
+    <Compile Include="Game\Inventory\Inventory.cs" />
+    <Compile Include="Game\Jobs\GatherManager.cs" />
+    <Compile Include="Game\Map\CellMovement.cs" />
+    <Compile Include="Game\Map\Elements\InteractiveElement.cs" />
+    <Compile Include="Game\Map\Elements\StatedElement.cs" />
+    <Compile Include="Game\Map\Elements\UsableElement.cs" />
+    <Compile Include="Game\Map\Map.cs" />
+    <Compile Include="Game\Map\MapChangement.cs" />
+    <Compile Include="Game\Party\Party.cs" />
+    <Compile Include="Core\Pathmanager\PathManager.cs" />
+    <Compile Include="Core\Character.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Configurations\AccountConfiguration.cs" />
+    <Compile Include="Utils\Configurations\AccountsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Configurations\AccountsForm.Designer.cs">
+      <DependentUpon>AccountsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Configurations\AddAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Configurations\AddAccountForm.Designer.cs">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Configurations\GlobalConfiguration.cs" />
+    <Compile Include="Utils\Configurations\FirstUseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Configurations\FirstUseForm.Designer.cs">
+      <DependentUpon>FirstUseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\MapControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Utils\Configurations\AccountsForm.resx">
+      <DependentUpon>AccountsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\Configurations\AddAccountForm.resx">
+      <DependentUpon>AddAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\Configurations\FirstUseForm.resx">
+      <DependentUpon>FirstUseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cookie-icon.ico" />
+    <None Include="Resources\minimize-tab.png" />
+    <None Include="Resources\maximize.png" />
+    <None Include="Resources\cross-remove-sign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cookie.API\Cookie.API.csproj">
+      <Project>{4cedb9ad-1a1e-42ab-9e1d-830d760812b4}</Project>
+      <Name>Cookie.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cookie.Design\Cookie.Design.vbproj">
+      <Project>{cbf6f19e-f400-4cf4-adc4-035b2737d3ec}</Project>
+      <Name>Cookie.Design</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

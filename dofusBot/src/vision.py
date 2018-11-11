@@ -43,38 +43,44 @@ def isPercentageBlack(img, percentage):
 	return cv2.countNonZero(img) >= percentage
 
 def applyBlueMask(img):
-	'''Returns 1 channel immage where white represent a blue pixel in original'''
-	lower = np.array([200, 0, 0], dtype = "uint8")
-	upper = np.array([255,35, 35], dtype = "uint8")
+	'''Returns 1 channel immage where white represent a blue pixel in original
+	The bonds are defined considering the shades of blues present when using
+	transparent mode'''
+	lower = np.array([180, 0, 0], dtype = "uint8")
+	upper = np.array([255, 80, 80], dtype = "uint8")
 	mask = cv2.inRange(img, lower, upper)
 	return mask
 
 def getCoordsWhereWhite(img):
 	if(len(img.shape)> 2):
 		raise Exception("method takes a 1 channel img")
-	return Point.convertToPoints(np.where(img > 200))
+	columnRow = np.where(img > 200)
+	coordsXY = zip(columnRow[1], columnRow[0])
+	return Point.convertToPoints(coordsXY)
 
-def getGroupsOfCoordinates(arrayOf2DCoords, threshold):
+def getGroupsOfCoordinates(points, threshold):
 	'''Input: 2d points
 	Output: lists of "bucket-fill-neighbours" whose number is above threshold'''
+	if not isinstance(points[0], Point):
+		raise Exception("Pass array of points")
 	clusters = []
-	while arrayOf2DCoords.any():
-		cluster = [arrayOf2DCoords[0]]
-		arrayOf2DCoords = arrayOf2DCoords[1:]
+	while points.any():
+		cluster = [points[0]]
+		points = points[1:]
 		i = 0
-		while i < len(arrayOf2DCoords):
+		while i < len(points):
 			try:
 				for point in cluster:
-					if(isAdjacent(point, arrayOf2DCoords[i])):
-						cluster.append(arrayOf2DCoords[i])	
-						arrayOf2DCoords = arrayOf2DCoords[np.arange(len(arrayOf2DCoords))!=i]
+					if point.isAround(points[i], 3):
+						cluster.append(points[i])	
+						points = points[np.arange(len(points))!=i]
 						i = 0
 						break
 				i = i + 1
 			except IndexError:
 				break
 		if len(cluster) > threshold:
-			clusters.append(Point.convertToPoints(cluster))	
+			clusters.append(cluster)	
 	return clusters
 
 def getCenterOfCrescent(points):

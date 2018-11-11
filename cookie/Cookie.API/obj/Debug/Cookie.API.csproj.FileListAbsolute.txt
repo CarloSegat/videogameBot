@@ -1,0 +1,6 @@
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.API\bin\Debug\Cookie.API.dll
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.API\bin\Debug\Cookie.API.pdb
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.API\obj\Debug\Cookie.API.csprojResolveAssemblyReference.cache
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.API\obj\Debug\Cookie.API.csproj.CoreCompileInputs.cache
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.API\obj\Debug\Cookie.API.dll
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.API\obj\Debug\Cookie.API.pdb

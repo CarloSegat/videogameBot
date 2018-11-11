@@ -1,0 +1,10 @@
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\bin\Debug\Cookie.Design.dll
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\bin\Debug\Cookie.Design.pdb
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\bin\Debug\Cookie.Design.xml
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.vbprojResolveAssemblyReference.cache
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.Resources.resources
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.vbproj.GenerateResource.Cache
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.vbproj.CoreCompileInputs.cache
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.dll
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.xml
+C:\Users\Carlo.Segat\Downloads\Cookie-master\Cookie-master\Cookie.Design\obj\Debug\Cookie.Design.pdb

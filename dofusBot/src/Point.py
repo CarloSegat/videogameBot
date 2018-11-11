@@ -1,4 +1,5 @@
 from math import sqrt
+import numpy as np
 
 class Point(object):
     
@@ -30,13 +31,13 @@ class Point(object):
             sumOfY = sumOfY + p.y
         x = sumOfX / len(points)
         y = sumOfY / len(points)
-        return(Point(x, y - offsetToAccoutForMorePointsHavingLowerYs))
+        return Point(x, y - offsetToAccoutForMorePointsHavingLowerYs)
     
     @staticmethod
     def convertToPoints(listOf2DTuples):
-        points = []
+        points = np.array([])
         for p in listOf2DTuples:
-            points.append(Point(p[0], p[1]))
+            points = np.append(points, Point(p[0], p[1]))
         return points
     
     @staticmethod
