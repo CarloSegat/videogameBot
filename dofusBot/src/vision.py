@@ -42,14 +42,25 @@ def isPercentageBlack(img, percentage):
 	# check if it's PIL or opencv img
 	return cv2.countNonZero(img) >= percentage
 
+def applyMask(img, lower, upper):
+	mask = cv2.inRange(img, lower, upper)
+	return mask
+
 def applyBlueMask(img):
 	'''Returns 1 channel immage where white represent a blue pixel in original
 	The bonds are defined considering the shades of blues present when using
 	transparent mode'''
 	lower = np.array([180, 0, 0], dtype = "uint8")
 	upper = np.array([255, 80, 80], dtype = "uint8")
-	mask = cv2.inRange(img, lower, upper)
-	return mask
+	return applyMask(img, lower, upper)
+	
+def applyRedMask(img):
+	'''Returns 1 channel immage where white represent a blue pixel in original
+	The bonds are defined considering the shades of blues present when using
+	transparent mode'''
+	lower = np.array([0, 0, 180], dtype = "uint8")
+	upper = np.array([80, 80, 255], dtype = "uint8")
+	return applyMask(img, lower, upper)
 
 def getCoordsWhereWhite(img):
 	if(len(img.shape)> 2):
@@ -101,5 +112,6 @@ def scaleBy(img, scaleFactor):
 	height = int(img.shape[0] * scaleFactor)
 	return cv2.resize(img, (width, height), interpolation = cv2.INTER_AREA)
 	
-		
+def crop(img, leftUp, rightDown):
+	return img[leftUp[1]:rightDown[1], leftUp[0]:rightDown[0]]
 		

@@ -20,6 +20,9 @@ class Point(object):
     def isAround(self, point, radius):
         return self.getDistance(point) <= radius
     
+    def addOffset(self, leftUp):
+        return Point(self.x + leftUp[0], self.y + leftUp[1])
+    
     @staticmethod
     def getCenterOfCrescent(points):
         '''Given 2d points that roughly represent a crescent return the rough center'''

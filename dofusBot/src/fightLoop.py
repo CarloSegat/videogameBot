@@ -1,7 +1,7 @@
 import win32api
 from keyboard import VK_CODE, press
 from vision import *
-from src.vision import getScreenShot
+from src.vision import *
 #Assuming shorcuts: tactical mode = m, creature mode = m, 
 # pass turn = f1
 
@@ -9,6 +9,7 @@ TACTICAL_MODE = 't'
 CREATURE_MODE ='m'
 PASS_TURN = 'F1'
 SPELLS = {'longRangeAttack': '1', 'buff': '2'}
+DELL_MONITOR_CROP = ((48, 21), (1254, 880))
 
 # TODO consider how to determine when it's ur turn
 # TODO move mouse out to avoid noise when taking screenshots (eg pm green trail)
@@ -63,11 +64,13 @@ def isFightFinished():
 def getScreenCoordsOfNearestEnemy():
 	'''Uses fact that enemies have a blue circle underneath in creature mode'''
 	screen = getScreenShot()
-	blueMasked = applyBlueMask(screen)
-	# blue mask the picture to find enemies
-	# get coordinates of blue edges
-	# ???
-	return (x, y)
+	masked = applyBlueMask(screen)
+	coordsYX = getCoordsWhereWhite(masked) 
+	groupsOfCoordinates = getGroupsOfCoordinates(coordsYX, 30)
+	centers = []
+	for gc in groupsOfCoordinates:
+		centers.append(Point.getCenterOfCrescent(gc))
+	myPosition = getCharacterPosition()
 	
 def selectSpell(correspondingNumber):
 	press(correspondingNumber)
@@ -80,4 +83,10 @@ def clickScreenCoord(coord):
 
 def getAP():
 	pass
-	
+
+def getCharacterPosition():
+	screen = getScreenShot()
+	masked = applyRedMask(screen)
+	coordsYX = getCoordsWhereWhite(masked) 
+	characterCoordinates = getGroupsOfCoordinates(coordsYX, 30)
+	return Point.getCenterOfCrescent(characterCoordinates)

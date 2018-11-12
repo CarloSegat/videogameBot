@@ -4,6 +4,7 @@ def test_Point():
     a = Point(0, 0)
     b = Point(2, 3)
     c = Point(1, 0)
+    d = Point
     arrayTuples = [(2,2), (88,2), (0, 2)]
  
     assert(a.isAdjacent(c))
