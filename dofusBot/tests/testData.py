@@ -12,12 +12,13 @@ imgCentersOfEnemies = {"1b.png": [Point(88, 372), Point(256, 329), Point(295, 31
 
 creatureMode_OffOn = {"1a.png": "1b.png", "2a.png": "2b.png", "3a.png": "3b.png"}
 
-tacticalMode_OffOn = {"6a.png": "6b.png", "7a.png": "7b.png", "8a.png": "8b.png"}
+tacticalMode_Off_On = {"6a.png": "6b.png", "7a.png": "7b.png", "8a.png": "8b.png"}
 
 fight_InOut = {"5a": "5b", "8b": "8c"}
 
-imgCharacterPosition = {"1b.png": [Point(130, 309)], 
-                        "2b.png": [Point(837, 538)], 
-                        "3b.png": [Point(753, 414)], 
-                        "4a.png": [Point(543, 475)],
-                        "8a.png": [Point(380, 307)] }
+#TODO should only use images with transparency
+imgCharacterPosition = {"1b.png": Point(130, 309), 
+                        "2b.png": Point(837, 538), 
+                        "3b.png": Point(753, 414), 
+                        "4a.png": Point(543, 475),
+                        "8a.png": Point(380, 307) }

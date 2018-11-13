@@ -1,5 +1,6 @@
 from math import sqrt
 import numpy as np
+import win32api
 
 class Point(object):
     
@@ -22,6 +23,9 @@ class Point(object):
     
     def addOffset(self, leftUp):
         return Point(self.x + leftUp[0], self.y + leftUp[1])
+    
+    def hover(self):
+        win32api.SetCursorPos(self.x, self.y)
     
     @staticmethod
     def getCenterOfCrescent(points):

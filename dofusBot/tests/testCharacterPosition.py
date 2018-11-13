@@ -10,8 +10,8 @@ def test_character_position():
             masked = applyRedMask(image)
             assert(len(masked) > 80)
             masked = crop(masked, (48, 21), (1254, 880))
-            cv2.imshow("d", masked)
-            cv2.waitKey(0)
+            #cv2.imshow("d", masked)
+            #cv2.waitKey(0)
             coordsYX = getCoordsWhereWhite(masked) 
             characterCoordinates = getGroupsOfCoordinates(coordsYX, 30)
             print len(characterCoordinates)
@@ -19,7 +19,7 @@ def test_character_position():
             # actually just one using transparency
             center = Point.getCenterOfCrescent(characterCoordinates[0])
             #center2 = Point.getCenterOfCrescent(characterCoordinates[1])
-            print str(center.addOffset((48, 21))) +" " + img
+            assert(center.addOffset((48, 21)).isAround(imgCharacterPosition[img], 25))
         except Exception as e:
             print os.path.basename(__file__) + " :( :( :("
             raise Exception(str(os.path.basename(__file__)) + " failed :( :( :(") 

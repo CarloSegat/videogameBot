@@ -6,6 +6,7 @@ from imageop import scale
 from Point import Point
 
 def getScreenShot(box = (0,0, 1279, 1023)):
+	Point(0,0).hover()
 	return ImageGrab.grab(box)
 	
 def pilToCv2(pilImg):
@@ -25,12 +26,7 @@ def getNumberOfColors(img):
 	
 def getColors(img):
 	'''Img -> list of colors'''
-	img = img.convert('RGB')
-	colors_present = []
-	for x in range(0, img.size[0]):
-		for y in range(0, img.size[1]):
-			colors_present.append(img.getpixel((x,y)))
-	return list(set(colors_present))
+	return np.unique(img.reshape(-1, img.shape[2]), axis=0)
 	
 def areImagesSimilar(imgLHS, imgRHS):
 	'''Simple pixel checking. If images are identical te subtraction will give a completly 
@@ -39,7 +35,7 @@ def areImagesSimilar(imgLHS, imgRHS):
 	return isPercentageBlack(subtraction, 50)
 	
 def isPercentageBlack(img, percentage):
-	# check if it's PIL or opencv img
+	'''Does the image have more than percentage-specified black pixels?'''
 	return cv2.countNonZero(img) >= percentage
 
 def applyMask(img, lower, upper):

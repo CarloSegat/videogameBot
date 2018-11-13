@@ -21,9 +21,9 @@ def fight():
 	ready()
 	while not isFightFinished():
 		startOfTurnAP = getAP()
-		x, y = getScreenCoordsOfNearestEnemy()
+		nearestEnemy = getScreenCoordsOfNearestEnemy()
 		selectSpell(SPELLS['longRangeAttack'])
-		clickScreenCoord((x, y))
+		clickScreenCoord(nearestEnemy)
 		if getAP() == startOfTurnAP:
 			pass
 			# click w/out spells selected halfway between pg and nearest enemy
@@ -43,13 +43,16 @@ def ready():
 	
 def ensureTacticalMode():
 	'''compute # of colors in a pre/post screenshot.
-	The image with lower count is more likely to be tactical mode as it's simpler'''
+	tactical mode has 1o times less colors than the normal mode usually'''
 	pre, post = getPrePostImages(toggleTacticalMode)
 	if getNumberOfColors(pre) > getNumberOfColors(post):
 		toggleTacticalMode()
 
 def	ensureCreatureMode():
+	'''In creature mode there are less colors 
+	but it's less marked than the difference between tactical/non-tactical'''
 	pre, post = getPrePostImages(toggleCreatureMode)
+	pre, post = crop(pre, DELL_MONITOR_CROP[0], DELL_MONITOR_CROP[1]), crop(post, DELL_MONITOR_CROP[0], DELL_MONITOR_CROP[1])
 	if getNumberOfColors(pre) > getNumberOfColors(post):
 		toggleCreatureMode()
 
@@ -82,6 +85,9 @@ def clickScreenCoord(coord):
 	win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0,0,0)
 
 def getAP():
+	'''AP Star position on the interface has to be specified'''
+	# getScreen shot of star
+	# read number using  ocr
 	pass
 
 def getCharacterPosition():
