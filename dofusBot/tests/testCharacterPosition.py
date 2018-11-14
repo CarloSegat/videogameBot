@@ -19,10 +19,12 @@ def test_character_position():
             # actually just one using transparency
             center = Point.getCenterOfCrescent(characterCoordinates[0])
             #center2 = Point.getCenterOfCrescent(characterCoordinates[1])
-            assert(center.addOffset((48, 21)).isAround(imgCharacterPosition[img], 25))
+            assert(center.addOffset((48, 21)).isAround(imgCharacterPosition[img], 35))
         except Exception as e:
             print os.path.basename(__file__) + " :( :( :("
             raise Exception(str(os.path.basename(__file__)) + " failed :( :( :(") 
-        
+    print os.path.basename(__file__) + "passed :)" 
+       
 if __name__ == "__main__":
     test_character_position()
+    print "done"

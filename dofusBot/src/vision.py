@@ -6,6 +6,7 @@ from imageop import scale
 from Point import Point
 
 def getScreenShot(box = (0,0, 1279, 1023)):
+	'''Gets cursor out of the wat for a clean shot'''
 	Point(0,0).hover()
 	return ImageGrab.grab(box)
 	
@@ -14,6 +15,7 @@ def pilToCv2(pilImg):
 	return cv2.cvtColor(np.array(pilImg), cv2.COLOR_RGB2BGR)
 	
 def getPrePostImages(toggleAction):
+	'''Return 2 sshots representing screen before and after an action'''
 	preScreenShot = getScreenShot()
 	toggleAction()
 	postScreenShot = getScreenShot()
@@ -36,7 +38,12 @@ def areImagesSimilar(imgLHS, imgRHS):
 	
 def isPercentageBlack(img, percentage):
 	'''Does the image have more than percentage-specified black pixels?'''
-	return cv2.countNonZero(img) >= percentage
+	count = 0
+	img = img.reshape(-1, img.shape[2])
+	for pix in img:
+		if pix[0] == pix[1] == pix[2] == 0:
+			count = count + 1
+	return count / float(img.shape[0]) >= percentage * 0.01
 
 def applyMask(img, lower, upper):
 	mask = cv2.inRange(img, lower, upper)
@@ -88,20 +95,7 @@ def getGroupsOfCoordinates(points, threshold):
 				break
 		if len(cluster) > threshold:
 			clusters.append(cluster)	
-	return clusters
-
-def getCenterOfCrescent(points):
-	'''Given 2d points that roughly represent a crescent return the rough center'''
-	offsetToAccoutForMorePointsHavingLowerYs = 5
-	sumOfX = 0
-	sumOfY = 0
-	for p in points:
-		sumOfX = sumOfX + p[0]
-		sumOfY = sumOfY + p[1]
-	x = sumOfX / len(points)
-	y = sumOfY / len(points)
-	return(x, y + offsetToAccoutForMorePointsHavingLowerYs)
-		
+	return clusters	
 		
 def scaleBy(img, scaleFactor):
 	width = int(img.shape[1] * scaleFactor)

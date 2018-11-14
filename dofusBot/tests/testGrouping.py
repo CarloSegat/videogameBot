@@ -32,11 +32,12 @@ if __name__ ==  '__main__':
                         oneMatch = oneMatch or computedCenter.isAround(exp, 10)
                     assert(oneMatch) 
             except Exception as e:
-                print os.path.basename(__file__) + " :( :( :("
+                print os.path.basename(__file__) + " failed"
                 print img + " didn't work"   
                 exit()         
                 
+        print os.path.basename(__file__) + "passed :)"
         
     test_get_center_of_circle()   
     test_from_img_to_centersOfEnemies()
-    print os.path.basename(__file__) + " :)"
+    

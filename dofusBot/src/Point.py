@@ -25,7 +25,7 @@ class Point(object):
         return Point(self.x + leftUp[0], self.y + leftUp[1])
     
     def hover(self):
-        win32api.SetCursorPos(self.x, self.y)
+        win32api.SetCursorPos((self.x, self.y))
     
     @staticmethod
     def getCenterOfCrescent(points):

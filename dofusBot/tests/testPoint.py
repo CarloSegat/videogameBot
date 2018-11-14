@@ -1,4 +1,5 @@
 from src.Point import Point
+import numpy as np
 
 def test_Point():
     a = Point(0, 0)
@@ -16,9 +17,9 @@ def test_Point():
     
     points = Point.convertToPoints(arrayTuples)
     for i in range(len(points)):
-        assert(points[i].x == arrayTuples[i][0])   
+        assert(points[i].x == arrayTuples[i][0]) 
+        
+    print __file__.split("\\")[-1] + " passed"  
     
 if __name__ ==  '__main__':
-    import numpy as np
     test_Point()
-    print "all good"
